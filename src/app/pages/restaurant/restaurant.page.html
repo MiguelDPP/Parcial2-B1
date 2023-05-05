@@ -8,9 +8,201 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">restaurant</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
+
+  <div class="ion-padding">
+    <ion-text color="primary">
+      <h1 style="text-align: center; font-weight: 600">
+        Restaurante Universitario
+      </h1>
+    </ion-text>
+    <ion-img src="assets/img/restaurant.png"></ion-img>
+    <p>
+      En esta sección se podrá ver el menú del restaurante y realizar pedidos de
+      los platillos que se deseen. A continuación se muestra un formulario para
+      realizar un pedido.
+    </p>
+  </div>
+  <div class="ion-padding">
+    <ion-text color="primary">
+      <h1 style="text-align: center; font-weight: 600">
+        Formulario de Reserva
+      </h1>
+    </ion-text>
+
+    <!-- Aqui el formulario -->
+    <!-- <ion-item> -->
+    <ion-input
+      label="Documento"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su documento"
+      errorText="Documento Invalido"
+      ngModel
+      type="number"
+      style="margin-bottom: 5px"
+    ></ion-input>
+
+    <ion-input
+      label="Nombre"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su nombre"
+      errorText="Nombre Invalido"
+      ngModel
+      type="text"
+      style="margin-bottom: 5px"
+    ></ion-input>
+    <!-- Select -->
+    <!-- <ion-item fill="outline">
+      <ion-label>Platillo</ion-label> -->
+    <ion-select
+      placeholder="Seleccione su rol"
+      interface="action-sheet"
+      style="margin-bottom: 5px"
+      label="¿Quien eres?"
+      fill="outline"
+    >
+      <ion-select-option value="1">Estudiante</ion-select-option>
+      <ion-select-option value="2">Docente</ion-select-option>
+      <ion-select-option value="3">Administrativo</ion-select-option>
+    </ion-select>
+
+    <ion-select
+      placeholder="Indique el tipo de comida"
+      interface="action-sheet"
+      style="margin-bottom: 5px"
+      label="Comido"
+      fill="outline"
+      [ngModel]="selected"
+      (ionChange)="handleChangeFood($event)"
+    >
+      <ion-select-option value="1">Desayuno</ion-select-option>
+      <ion-select-option value="2">Almuerzo</ion-select-option>
+      <ion-select-option value="3">Cena</ion-select-option>
+    </ion-select>
+
+    <!-- Comidas -->
+    <div *ngIf="selected === '1'">
+      <ion-text color="primary">
+        <h4 style="text-align: center; font-weight: 600">Desayunos</h4>
+      </ion-text>
+      <ion-card *ngFor="let item of desayunos" color="light">
+        <ion-card-header>
+          <!-- <ion-card-subtitle></ion-card-subtitle> -->
+          <ion-img [src]="item.img"></ion-img>
+          <ion-card-title>{{item.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text color="primary" style="font-weight: 600">
+            <h2>{{item.price}}</h2>
+          </ion-text>
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="handleClick(item)"
+          >
+            <ion-icon
+              [name]="item.active === true ? 'checkmark-circle' : 'add-circle'"
+              style="margin-right: 5px; font-size: 20px"
+            ></ion-icon>
+            {{ item.active === true ? 'Agregado' : 'Agregar' }}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="selected === '2'">
+      <ion-text color="primary">
+        <h4 style="text-align: center; font-weight: 600">Almuerzos</h4>
+      </ion-text>
+      <ion-card *ngFor="let item of almuerzos" color="light">
+        <ion-card-header>
+          <!-- <ion-card-subtitle></ion-card-subtitle> -->
+          <ion-img [src]="item.img"></ion-img>
+          <ion-card-title>{{item.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text color="primary" style="font-weight: 600">
+            <h2>{{item.price}}</h2>
+          </ion-text>
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="handleClick(item)"
+          >
+            <ion-icon
+              [name]="item.active === true ? 'checkmark-circle' : 'add-circle'"
+              style="margin-right: 5px; font-size: 20px"
+            ></ion-icon>
+            {{ item.active === true ? 'Agregado' : 'Agregar' }}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="selected === '3'">
+      <ion-text color="primary">
+        <h4 style="text-align: center; font-weight: 600">Cenas</h4>
+      </ion-text>
+      <ion-card *ngFor="let item of cenas" color="light">
+        <ion-card-header>
+          <!-- <ion-card-subtitle></ion-card-subtitle> -->
+          <ion-img [src]="item.img"></ion-img>
+          <ion-card-title>{{item.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text color="primary" style="font-weight: 600">
+            <h2>{{item.price}}</h2>
+          </ion-text>
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="handleClick(item)"
+          >
+            <ion-icon
+              [name]="item.active === true ? 'checkmark-circle' : 'add-circle'"
+              style="margin-right: 5px; font-size: 20px"
+            ></ion-icon>
+            {{ item.active === true ? 'Agregado' : 'Agregar' }}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="selected === '0'">
+      <ion-text color="primary">
+        <h4 style="text-align: center; font-weight: 600">
+          Seleccione un tipo de comida
+        </h4>
+      </ion-text>
+    </div>
+
+    <!-- Fecha -->
+    <ion-item>
+      <ion-label>Fecha de reserva</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-datetime
+        display-format="DD/MM/YYYY"
+        picker-format="DD/MM/YYYY"
+        [(ngModel)]="myDate"
+      ></ion-datetime>
+    </ion-item>
+  </div>
+  <div class="ion-padding">
+    <!-- Total a Pagar -->
+    <ion-text color="primary">
+      <h1 style="text-align: center; font-weight: 600">Total a Pagar</h1>
+    </ion-text>
+    <ion-item>
+      <ion-label>Subtotal</ion-label>
+      <ion-label slot="end"
+        >{{ current.price ? current?.price : 0 }}
+      </ion-label>
+    </ion-item>
+
+    <ion-button expand="block" color="primary"> Pagar </ion-button>
+  </div>
 </ion-content>
