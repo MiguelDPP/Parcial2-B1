@@ -42,9 +42,11 @@
       fill="outline"
       placeholder="Ingrese su documento"
       errorText="Documento Invalido"
-      ngModel
       type="number"
       style="margin-bottom: 5px"
+      [ngModel]="document"
+      (ionChange)="handleChangeDocument($event)"
+      required
     ></ion-input>
 
     <ion-input
@@ -53,19 +55,25 @@
       fill="outline"
       placeholder="Ingrese su nombre"
       errorText="Nombre Invalido"
-      ngModel
+      [ngModel]="name"
       type="text"
       style="margin-bottom: 5px"
+      required
+      (ionChange)="handleChangeName($event)"
     ></ion-input>
     <!-- Select -->
     <!-- <ion-item fill="outline">
-      <ion-label>Platillo</ion-label> -->
+        <ion-label>Platillo</ion-label> -->
     <ion-select
       placeholder="Seleccione su rol"
       interface="action-sheet"
       style="margin-bottom: 5px"
       label="¿Quien eres?"
       fill="outline"
+      required
+      [ngModel]="role"
+      (ionChange)="handleChangeRole($event)"
+      errorText="Rol Invalido"
     >
       <ion-select-option value="1">Estudiante</ion-select-option>
       <ion-select-option value="2">Docente</ion-select-option>
@@ -80,6 +88,8 @@
       fill="outline"
       [ngModel]="selected"
       (ionChange)="handleChangeFood($event)"
+      required
+      errorText="Comida Invalida"
     >
       <ion-select-option value="1">Desayuno</ion-select-option>
       <ion-select-option value="2">Almuerzo</ion-select-option>
@@ -171,8 +181,8 @@
         </ion-card-content>
       </ion-card>
     </div>
-    <div *ngIf="selected === '0'">
-      <ion-text color="primary">
+    <div *ngIf="selected === ''">
+      <ion-text color="danger">
         <h4 style="text-align: center; font-weight: 600">
           Seleccione un tipo de comida
         </h4>
@@ -188,6 +198,7 @@
         display-format="DD/MM/YYYY"
         picker-format="DD/MM/YYYY"
         [(ngModel)]="myDate"
+        (ionChange)="handleChangeDate($event)"
       ></ion-datetime>
     </ion-item>
   </div>
@@ -203,6 +214,49 @@
       </ion-label>
     </ion-item>
 
-    <ion-button expand="block" color="primary"> Pagar </ion-button>
+    <ion-text *ngIf="error" color="danger">
+      <h4 style="text-align: center; font-weight: 600">{{ error }}</h4>
+    </ion-text>
+    <ion-button expand="block" color="primary" (click)="handleClickPay()"
+      >Pagar</ion-button
+    >
   </div>
+
+  <!-- Modal -->
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Muy bien</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+          "
+        >
+          <ion-icon
+            name="checkmark-circle-outline"
+            style="font-size: 100px; color: green"
+          ></ion-icon>
+
+          <ion-text color="primary">
+            <h1 style="text-align: center; font-weight: 600">
+              Pedido Realizado
+            </h1>
+          </ion-text>
+
+          <ion-img src="assets/img/success.png"></ion-img>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
