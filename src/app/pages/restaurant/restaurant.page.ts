@@ -30,14 +30,38 @@ export class RestaurantPage implements OnInit {
       active: false,
       type: '1',
     },
+    {
+      id: '2',
+    name: 'Yogur griego con granola y frutas mixtas',
+    price: '$ 4.000',
+    img: '/assets/img/desayunos/2.jpg',
+    active: false,
+    type: '1',
+    },
+    {
+      id: '3',
+    name: 'Huevos revueltos con espinacas y queso cheddar rallado',
+    price: '$ 8.000',
+    img: '/assets/img/desayunos/3.jpg',
+    active: false,
+    type: '1',
+    },
+    {
+      id: '4',
+    name: 'Omelet de jamón y queso con tostadas de pan integral',
+    price: '$ 8.000',
+    img: '/assets/img/desayunos/4.jpg',
+    active: false,
+    type: '1',
+  },
   ];
 
   almuerzos = [
     {
       id: '1',
-      name: 'Tostadas francesas con frutas frescas y miel',
-      price: '$ 3.0000',
-      img: '/assets/img/desayunos/1.jfif',
+      name: 'Ensalada César con pollo a la parrilla',
+      price: '$ 5.000',
+      img: '/assets/img/almuerzos/1-1.jpg',
       active: false,
       type: '2',
     },
