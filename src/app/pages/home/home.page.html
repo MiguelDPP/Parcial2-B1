@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Bienestar UPC Aguachica</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-img src="assets/img/logo upc.png" alt="logo"></ion-img>
+
+    <ion-text color="primary">
+      <h3>
+        Bienvenido a bienestar universitario, aquí encontraras los servicios y
+        beneficios que la universidad te ofrece.
+      </h3>
+    </ion-text>
+
+    <!-- Imagen de universidad -->
+    <ion-img src="assets/img/university.png" alt="upc"></ion-img>
+
+    <!-- boton de empieza ahora -->
+    <ion-button
+      expand="block"
+      fill="outline"
+      color="primary"
+      [routerLink]="['/services']"
+    >
+      Empieza ahora
+    </ion-button>
+  </div>
+</ion-content>
