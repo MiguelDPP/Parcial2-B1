@@ -81,6 +81,22 @@
     </ion-select>
 
     <ion-select
+      placeholder="Indique su carrera"
+      interface="action-sheet"
+      style="margin-bottom: 5px"
+      label="Carrera"
+      fill="outline"
+      [ngModel]="carrera"
+      (ionChange)="handleChangeCarrera($event)"
+      required
+      errorText="Carrera Invalida"
+    >
+      <ion-select-option value="1">Ing. Sistemas</ion-select-option>
+      <ion-select-option value="2">Economía</ion-select-option>
+      <ion-select-option value="3">Contaduría</ion-select-option>
+    </ion-select>
+
+    <ion-select
       placeholder="Indique el tipo de comida"
       interface="action-sheet"
       style="margin-bottom: 5px"

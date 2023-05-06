@@ -156,6 +156,7 @@ export class RestaurantPage implements OnInit {
 
   isModalOpen = false;
   error: string = '';
+  carrera: string = '';
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -182,6 +183,10 @@ export class RestaurantPage implements OnInit {
 
   handleChangeDate(event:any) {
     this.myDate = event.detail.value;
+  }
+
+  handleChangeCarrera(event:any) {
+    this.carrera = event.detail.value;
   }
 
   resetForm() {

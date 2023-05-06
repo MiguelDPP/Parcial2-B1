@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Restaurante-UPC</string>
+    <string name="title_activity_main">Restaurante-UPC</string>
+    <string name="package_name">com.softcode.upc</string>
+    <string name="custom_url_scheme">com.softcode.upc</string>
+</resources>
