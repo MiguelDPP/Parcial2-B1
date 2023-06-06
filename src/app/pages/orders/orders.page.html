@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Ordenes </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="ion-padding">
+    <ion-input
+      label="Documento"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su nombre"
+      errorText="Nombre Invalido"
+      [ngModel]="id"
+      type="text"
+      style="margin-bottom: 5px"
+      required
+      (ionChange)="handleChangeId($event)"
+    ></ion-input>
+
+    <!-- Button -->
+    <ion-button
+      expand="block"
+      color="primary"
+      style="margin-bottom: 5px"
+      (click)="handleClick()"
+    >
+      Buscar
+    </ion-button>
+
+    <!-- Loader -->
+    <ion-spinner
+      *ngIf="isLoading"
+      name="crescent"
+      style="margin-left: 50%; margin-top: 20px"
+    ></ion-spinner>
+
+
+    <ion-list style="margin-top: 20px;">
+      <ion-item *ngFor="let order of orders">
+        <ion-thumbnail slot="start">
+          <ion-img src="assets/img/success.png"></ion-img>
+        </ion-thumbnail>
+
+        <ion-label>
+          <h2>{{ order?.food?.name }}</h2>
+          <h3><strong>Cantidad: </strong>{{ order.amount }}</h3>
+          <!-- <p>{{ order.description }}</p> -->
+        </ion-label>
+        <ion-badge slot="end">
+          $ {{ order?.price }}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item *ngIf="orders.length === 0">
+        <ion-label>
+          <h2>No hay ordenes</h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+
+</ion-content>

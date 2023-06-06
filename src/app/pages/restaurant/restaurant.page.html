@@ -60,6 +60,7 @@
       style="margin-bottom: 5px"
       required
       (ionChange)="handleChangeName($event)"
+      [disabled]="clientFound"
     ></ion-input>
     <!-- Select -->
     <!-- <ion-item fill="outline">
@@ -74,6 +75,7 @@
       [ngModel]="role"
       (ionChange)="handleChangeRole($event)"
       errorText="Rol Invalido"
+      [disabled]="clientFound"
     >
       <ion-select-option value="1">Estudiante</ion-select-option>
       <ion-select-option value="2">Docente</ion-select-option>
@@ -92,8 +94,12 @@
       errorText="Carrera Invalida"
     >
       <ion-select-option value="1">Ing. Sistemas</ion-select-option>
+      <ion-select-option value="5">Ing. Ambiental</ion-select-option>
+      <ion-select-option value="6">Ing. Agroindustrial</ion-select-option>
       <ion-select-option value="2">Economía</ion-select-option>
       <ion-select-option value="3">Contaduría</ion-select-option>
+      <ion-select-option value="4">Administración</ion-select-option>
+      <ion-select-option value="7">Tecnologia Agropecuaria</ion-select-option>
     </ion-select>
 
     <ion-select
@@ -233,9 +239,10 @@
     <ion-text *ngIf="error" color="danger">
       <h6 style="text-align: center; font-weight: 500">{{ error }}</h6>
     </ion-text>
-    <ion-button expand="block" color="primary" (click)="handleClickPay()"
-      >Pagar</ion-button
-    >
+    <ion-button expand="block" color="primary" 
+    (click)="handleClickPay()">
+      Pagar
+    </ion-button>
   </div>
 
   <!-- Modal -->
@@ -260,17 +267,45 @@
           "
         >
           <ion-icon
+          *ngIf="!isPayLoading"
             name="checkmark-circle-outline"
             style="font-size: 100px; color: green"
           ></ion-icon>
 
-          <ion-text color="primary">
+          <ion-text color="primary" *ngIf="!isPayLoading">
             <h1 style="text-align: center; font-weight: 600">
               Pedido Realizado
             </h1>
           </ion-text>
 
-          <ion-img src="assets/img/success.png"></ion-img>
+          <!-- Spiner -->
+          <ion-spinner
+            *ngIf="isPayLoading"
+            color="primary"
+            style="margin-bottom: 10px"
+          ></ion-spinner>
+          <!-- sPINER GRANDE -->
+          <ion-text color="primary" *ngIf="isPayLoading">
+            <h1 style="text-align: center; font-weight: 600">
+              Procesando Pago
+            </h1>
+          </ion-text>
+
+
+
+          <!-- Ver orden -->
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="handleClickView()"
+            *ngIf="!isPayLoading"
+            
+          >
+            Ver Orden
+          </ion-button>
+
+
+          <ion-img *ngIf="!isPayLoading" src="assets/img/success.png"></ion-img>
         </div>
       </ion-content>
     </ng-template>

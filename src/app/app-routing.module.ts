@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'restaurant',
-    loadChildren: () => import('./pages/restaurant/restaurant.module').then( m => m.RestaurantPageModule)
+    loadChildren: () => import('./pages/restaurant-tab/restaurant-tab.module').then( m => m.RestaurantTabPageModule)
   },
   {
     path: 'salud',
@@ -46,6 +46,14 @@ const routes: Routes = [
   {
     path: 'social',
     loadChildren: () => import('./pages/services-tab/social/social.module').then( m => m.SocialPageModule)
+  },
+  {
+    path: 'restaurant-tab',
+    loadChildren: () => import('./pages/restaurant-tab/restaurant-tab.module').then( m => m.RestaurantTabPageModule)
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
   },
 ];
 
